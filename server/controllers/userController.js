@@ -27,12 +27,11 @@ module.exports.addUser = async (req, res) => {
 module.exports.selectPlayer = async (req, res) => {
   try {
     const { playerId } = req.query;
+    const findUserData = await Users.findOne({});
     const findUser = await selectPlayers.find({
-      userId: "664f0d09e9f856462e178be5",
+      userId: findUserData._id,
     });
-    const findUserData = await Users.findOne({
-      _id: "664f0d09e9f856462e178be5",
-    });
+    console.log(findUser);
 
     const findPlayerData = await Players.findOne({
       _id: playerId,
@@ -40,12 +39,12 @@ module.exports.selectPlayer = async (req, res) => {
 
     if (findUser) {
       findPlayer = await selectPlayers.findOne({
-        $and: [{ userId: "664f0d09e9f856462e178be5" }, { playerId }],
+        $and: [{ userId: findUserData._id }, { playerId }],
       });
 
       if (!findPlayer) {
         const addPlayer = new selectPlayers({
-          userId: "664f0d09e9f856462e178be5",
+          userId: findUserData._id,
           playerId: playerId,
         });
         await addPlayer.save();
@@ -53,7 +52,7 @@ module.exports.selectPlayer = async (req, res) => {
           (await Number(findUserData.totalMoney)) -
           Number(findPlayerData.price);
         await Users.updateOne(
-          { _id: "664f0d09e9f856462e178be5" },
+          { _id: findUserData._id },
           { $set: { totalMoney: totalAmount } }
         );
         res
@@ -71,12 +70,10 @@ module.exports.selectPlayer = async (req, res) => {
 module.exports.removePlayer = async (req, res) => {
   try {
     const { playerId } = req.query;
-    const findUser = await selectPlayers.find({
-      userId: "664f0d09e9f856462e178be5",
-    });
+    const findUserData = await Users.findOne({});
 
-    const findUserData = await Users.findOne({
-      _id: "664f0d09e9f856462e178be5",
+    const findUser = await selectPlayers.find({
+      userId: findUserData._id,
     });
 
     const findPlayerData = await Players.findOne({
@@ -88,12 +85,12 @@ module.exports.removePlayer = async (req, res) => {
         (await Number(findUserData.totalMoney)) + Number(findPlayerData.price);
       console.log(totalAmount);
       await Users.updateOne(
-        { _id: "664f0d09e9f856462e178be5" },
+        { _id: findUserData._id },
         { $set: { totalMoney: totalAmount } }
       );
 
       await selectPlayers.deleteOne({
-        $and: [{ userId: "664f0d09e9f856462e178be5" }, { playerId }],
+        $and: [{ userId: findUserData._id }, { playerId }],
       });
       res
         .status(200)
@@ -108,9 +105,11 @@ module.exports.removePlayer = async (req, res) => {
 
 module.exports.viewSelectedPlayers = async (req, res) => {
   try {
+    const findUserData = await Users.findOne({});
+
     const findSelectedPlayers = await selectPlayers
       .find({
-        userId: "664f0d09e9f856462e178be5",
+        userId: findUserData._id,
       })
       .select("-__v")
       .populate({ path: "playerId" });
@@ -127,9 +126,7 @@ module.exports.viewSelectedPlayers = async (req, res) => {
 
 module.exports.viewUser = async (req, res) => {
   try {
-    const findUserData = await Users.findOne({
-      _id: "664f0d09e9f856462e178be5",
-    });
+    const findUserData = await Users.findOne({});
     if (findUserData) {
       res.status(200).send({
         success: true,
