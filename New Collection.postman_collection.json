@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "416cdeea-b3b7-45d3-a720-c104f4ce76c5",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28923321"
+	},
+	"item": [
+		{
+			"name": "add-player",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"M S Dhoni\",\r\n    \"price\":95\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/add-player",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"add-player"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view-all-players",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/view-all-players",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"view-all-players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Arjun\",\r\n    \"totalMoney\":1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/add-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"add-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "select-player",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/select-player?playerId=664eefc0860db4a3860ee7dc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"select-player"
+					],
+					"query": [
+						{
+							"key": "playerId",
+							"value": "664eefc0860db4a3860ee7dc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove-player",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/remove-player?playerId=664eef84860db4a3860ee7da",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"remove-player"
+					],
+					"query": [
+						{
+							"key": "playerId",
+							"value": "664eef84860db4a3860ee7da"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view-selected-player",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/view-selected-player",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"view-selected-player"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view-user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/view-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"view-user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
